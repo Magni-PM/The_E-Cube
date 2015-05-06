@@ -5,7 +5,7 @@
 
 #include "rotation.h"
 
-void operation(int ChoixOperation, float faceB[3][3], float faceO[3][3], float faceG[3][3], float faceR[3][3], float faceY[3][3], float faceW[3][3]){
+void operation(int ChoixOperation, int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3]){
 	switch (ChoixOperation)
 	{
 	case 0 :

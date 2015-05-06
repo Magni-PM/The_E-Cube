@@ -4,9 +4,9 @@
 #include <string.h>
 
 
-extern void U(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[3][3],float faceY[3][3]){
+extern void U(int faceB[3][3],int faceO[3][3],int faceG[3][3],int faceR[3][3],int faceY[3][3]){
 	int j; //iterateur boucle
-	float tp[3][3]; //tableau tampon
+	int tp[3][3]; //tableau tampon
 	
 	//on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -17,8 +17,8 @@ extern void U(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[
 		faceO[0][j] = tp[0][j];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceY[2][1];
-	float tpupc = faceY[2][0];
+	int tpupa = faceY[2][1];
+	int tpupc = faceY[2][0];
 	//aretes
 	faceY[2][1] = faceY[1][2];
 	faceY[1][2] = faceY[0][1];
@@ -31,9 +31,9 @@ extern void U(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[
 	faceY[0][0] = tpupc;
 }
 
-extern void Ui(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[3][3],float faceY[3][3]){
+extern void Ui(int faceB[3][3],int faceO[3][3],int faceG[3][3],int faceR[3][3],int faceY[3][3]){
 	int j;//iterateur boucle
-	float tp[3][3];//tableau tampon	
+	int tp[3][3];//tableau tampon	
         
 	//on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -44,8 +44,8 @@ extern void Ui(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR
 		faceR[0][j] = tp[0][j];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceY[2][1];
-	float tpupc = faceY[2][0];
+	int tpupa = faceY[2][1];
+	int tpupc = faceY[2][0];
 	//aretes
 	faceY[2][1] = faceY[1][0];
 	faceY[1][0] = faceY[0][1];
@@ -58,9 +58,9 @@ extern void Ui(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR
 	faceY[2][2] = tpupc;
     }
 
- extern void R(float faceB[3][3],float faceG[3][3],float faceR[3][3],float faceY[3][3],float faceW[3][3]){
+ extern void R(int faceB[3][3],int faceG[3][3],int faceR[3][3],int faceY[3][3],int faceW[3][3]){
 	int j;//iterateur boucle
-	float tp[3][3];//tableau tampon	
+	int tp[3][3];//tableau tampon	
 
         //on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -71,8 +71,8 @@ extern void Ui(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR
 		faceY[j][2] = tp[j][2];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceR[2][1];
-	float tpupc = faceR[2][0];
+	int tpupa = faceR[2][1];
+	int tpupc = faceR[2][0];
 	//aretes
 	faceR[2][1] = faceR[1][2];
 	faceR[1][2] = faceR[0][1];
@@ -85,9 +85,9 @@ extern void Ui(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR
 	faceR[0][0] = tpupc;
 }
 
- extern void Ri(float faceB[3][3],float faceG[3][3],float faceR[3][3],float faceY[3][3],float faceW[3][3]){
+ extern void Ri(int faceB[3][3],int faceG[3][3],int faceR[3][3],int faceY[3][3],int faceW[3][3]){
 	int j;//iterateur boucle
-	float tp[3][3];//tableau tampon		
+	int tp[3][3];//tableau tampon		
 
 	//on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -98,8 +98,8 @@ extern void Ui(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR
 		faceW[j][2] = tp[j][2];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceR[2][1];
-	float tpupc = faceR[2][0];
+	int tpupa = faceR[2][1];
+	int tpupc = faceR[2][0];
 	//aretes
 	faceR[2][1] = faceR[1][0];
 	faceR[1][0] = faceR[0][1];
@@ -112,9 +112,9 @@ extern void Ui(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR
 	faceR[2][2] = tpupc;
 }
 
-extern void L(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceY[3][3],float faceW[3][3]){
+extern void L(int faceB[3][3],int faceO[3][3],int faceG[3][3],int faceY[3][3],int faceW[3][3]){
 	int j;//iterateur boucle
-	float tp[3][3];//tableau tampon		
+	int tp[3][3];//tableau tampon		
 	
 	//on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -125,8 +125,8 @@ extern void L(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceY[
 		faceW[j][0] = tp[j][0];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceO[2][1];
-	float tpupc = faceO[2][0];
+	int tpupa = faceO[2][1];
+	int tpupc = faceO[2][0];
 	//aretes
 	faceO[2][1] = faceO[1][2];
 	faceO[1][2] = faceO[0][1];
@@ -139,9 +139,9 @@ extern void L(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceY[
    	faceO[0][0] = tpupc;
 }
 
-extern void Li(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceY[3][3],float faceW[3][3]){
+extern void Li(int faceB[3][3],int faceO[3][3],int faceG[3][3],int faceY[3][3],int faceW[3][3]){
 	int j;//iterateur boucle
-	float tp[3][3];//tableau tampon	
+	int tp[3][3];//tableau tampon	
 
 	//on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -152,8 +152,8 @@ extern void Li(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceY
 		faceY[j][0] = tp[j][0];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceO[2][1];
-	float tpupc = faceO[2][0];
+	int tpupa = faceO[2][1];
+	int tpupc = faceO[2][0];
 	//aretes
 	faceO[2][1] = faceO[1][0];
 	faceO[1][0] = faceO[0][1];
@@ -166,9 +166,9 @@ extern void Li(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceY
 	faceO[2][2] = tpupc;
 }
 
-extern void D(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[3][3],float faceW[3][3]){
+extern void D(int faceB[3][3],int faceO[3][3],int faceG[3][3],int faceR[3][3],int faceW[3][3]){
 	int j;//iterateur boucle
-	float tp[3][3];//tableau tampon	
+	int tp[3][3];//tableau tampon	
 
 	//on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -179,8 +179,8 @@ extern void D(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[
 		faceO[2][j] = tp[2][j];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceW[2][1];
-	float tpupc = faceW[2][0];
+	int tpupa = faceW[2][1];
+	int tpupc = faceW[2][0];
 	//aretes
 	faceW[2][1] = faceW[1][0];
 	faceW[1][0] = faceW[0][1];
@@ -193,9 +193,9 @@ extern void D(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[
 	faceW[2][2] = tpupc;
 }
 
-extern void Di(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[3][3],float faceW[3][3]){
+extern void Di(int faceB[3][3],int faceO[3][3],int faceG[3][3],int faceR[3][3],int faceW[3][3]){
 	int j;//iterateur boucle
-	float tp[3][3];//tableau tampon	
+	int tp[3][3];//tableau tampon	
 
 	//on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -206,8 +206,8 @@ extern void Di(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR
 		faceR[2][j] = tp[2][j];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceW[2][1];
-	float tpupc = faceW[2][0];
+	int tpupa = faceW[2][1];
+	int tpupc = faceW[2][0];
 	//aretes
 	faceW[2][1] = faceW[1][2];
 	faceW[1][2] = faceW[0][1];
@@ -221,9 +221,9 @@ extern void Di(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR
 
 }
 
-extern void B(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[3][3],float faceY[3][3], float faceW[3][3]){
+extern void B(int faceB[3][3],int faceO[3][3],int faceG[3][3],int faceR[3][3],int faceY[3][3], int faceW[3][3]){
 	int j;//iterateur boucle
-	float tp[3][3];//tableau tampon	
+	int tp[3][3];//tableau tampon	
 
 	//on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -234,8 +234,8 @@ extern void B(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[
 		faceO[2-j][0] = tp[0][j];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceG[2][1];
-	float tpupc = faceG[2][0];
+	int tpupa = faceG[2][1];
+	int tpupc = faceG[2][0];
 	//aretes
 	faceG[2][1] = faceG[1][2];
 	faceG[1][2] = faceG[0][1];
@@ -249,9 +249,9 @@ extern void B(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[
 
 }
 
-extern void Bi(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR[3][3],float faceY[3][3], float faceW[3][3]){
+extern void Bi(int faceB[3][3],int faceO[3][3],int faceG[3][3],int faceR[3][3],int faceY[3][3], int faceW[3][3]){
 	int j;//iterateur boucle
-	float tp[3][3];//tableau tampon	
+	int tp[3][3];//tableau tampon	
 
 	//on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -262,8 +262,8 @@ extern void Bi(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR
 		faceR[j][2] = tp[0][j];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceG[2][1];
-	float tpupc = faceG[2][0];
+	int tpupa = faceG[2][1];
+	int tpupc = faceG[2][0];
 	//aretes
 	faceG[2][1] = faceG[1][0];
 	faceG[1][0] = faceG[0][1];
@@ -276,9 +276,9 @@ extern void Bi(float faceB[3][3],float faceO[3][3],float faceG[3][3],float faceR
 	faceG[2][2] = tpupc;
 }
 
-extern void F(float faceO[3][3],float faceG[3][3],float faceR[3][3],float faceY[3][3],float faceW[3][3], float faceB[3][3]){
+extern void F(int faceO[3][3],int faceG[3][3],int faceR[3][3],int faceY[3][3],int faceW[3][3], int faceB[3][3]){
 	int j; //iterateur boucle
-	float tp[3][3]; //tableau tampon	
+	int tp[3][3]; //tableau tampon	
 
 	//on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -289,8 +289,8 @@ extern void F(float faceO[3][3],float faceG[3][3],float faceR[3][3],float faceY[
 		faceR[j][0] = tp[2][j];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceB[2][1];
-	float tpupc = faceB[2][0];
+	int tpupa = faceB[2][1];
+	int tpupc = faceB[2][0];
 	//aretes
 	faceB[2][1] = faceB[1][2];
 	faceB[1][2] = faceB[0][1];
@@ -304,9 +304,9 @@ extern void F(float faceO[3][3],float faceG[3][3],float faceR[3][3],float faceY[
 
 }
 
-extern void Fi(float faceO[3][3],float faceG[3][3],float faceR[3][3],float faceY[3][3],float faceW[3][3], float faceB[3][3]){
+extern void Fi(int faceO[3][3],int faceG[3][3],int faceR[3][3],int faceY[3][3],int faceW[3][3], int faceB[3][3]){
 	int j;//iterateur boucle
-	float tp[3][3];//tableau tampon	
+	int tp[3][3];//tableau tampon	
 
 	//on permute les cotes
 	for (j=0; j<3 ; j++){
@@ -317,8 +317,8 @@ extern void Fi(float faceO[3][3],float faceG[3][3],float faceR[3][3],float faceY
 		faceO[2-j][2] = tp[2][j];
 	}
 	//on fait la permutation circulaire de la matrice superieur
-	float tpupa = faceB[2][1];
-	float tpupc = faceB[2][0];
+	int tpupa = faceB[2][1];
+	int tpupc = faceB[2][0];
 	//aretes
 	faceB[2][1] = faceB[1][0];
 	faceB[1][0] = faceB[0][1];

@@ -7,11 +7,11 @@ OBJ= $(SRC:.c=.o)
 
 all: $(EXEC)
 
-The_E-Cube: $(OBJ)
-	@$(CC) -o $@ $^ $(LDFLAGS) 
+$(EXEC): $(OBJ)
+	@$(CC) -lSDL2 -o $@ $^ $(LDFLAGS) 
 
 %.o: %.c
-	@$(CC) -o $@ -c $< $(CFLAGS) 
+	@$(CC) -I/usr/include/SDL2 -o $@ -c $< $(CFLAGS) 
 	
 clean:
 	@rm -rf *.o etapes.txt

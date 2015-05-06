@@ -7,12 +7,12 @@
 #include "Affichage.h"
 
 
-void MelangeAleatoire(float faceB[3][3], float faceO[3][3], float faceG[3][3], float faceR[3][3], float faceY[3][3], float faceW[3][3],int nbEtapes, int nbModAlea){
+void MelangeAleatoire(int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3],int nbEtapes, int nbModAlea){
 	int optodo;
 	int nbMod;
 
 	system("clear");
-	Affichage(faceB, faceO, faceG, faceR, faceY, faceW, nbEtapes, nbModAlea);
+	Affichage(faceB, faceO, faceG, faceR, faceY, faceW);
 	printf("Nombres de modification aleatoires voulues ?\n");
 	scanf("%d", &nbMod);
 
@@ -41,13 +41,13 @@ void MelangeAleatoire(float faceB[3][3], float faceO[3][3], float faceG[3][3], f
 }
 
 
-void CubeManuel (float faceB[3][3], float faceO[3][3], float faceG[3][3], float faceR[3][3], float faceY[3][3], float faceW[3][3], int nbEtapes, int nbModAlea){
+void CubeManuel (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], int nbEtapes, int nbModAlea){
 	int ChoixOperation;
 	
 	for(;;)
 	{
 		system("clear");
-		Affichage(faceB, faceO, faceG, faceR, faceY, faceW, nbEtapes, nbModAlea);
+		Affichage(faceB, faceO, faceG, faceR, faceY, faceW);
 		
 		printf("\n \n \nQuels modifications ?\n1=UP   11=UPi\n");
 		printf("2=R    22=Ri\n");
@@ -78,7 +78,7 @@ void CubeManuel (float faceB[3][3], float faceO[3][3], float faceG[3][3], float 
 }
 
 
-void ModificationFromTxt(float faceB[3][3], float faceO[3][3], float faceG[3][3], float faceR[3][3], float faceY[3][3], float faceW[3][3]){
+void ModificationFromTxt(int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3]){
 	char e[2];
 	int optodo;
 	int nsamples = 0; //nombre d'opération

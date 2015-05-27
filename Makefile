@@ -1,6 +1,6 @@
 CC=clang
-CFLAGS=-O2 -g
-LDFLAGS=-O2 -g
+CFLAGS=-O0 -g -Wall
+LDFLAGS=-O0 -g -Wall
 EXEC=The_E-Cube
 SRC= $(wildcard *.c)
 OBJ= $(SRC:.c=.o)

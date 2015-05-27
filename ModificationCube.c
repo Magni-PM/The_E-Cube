@@ -7,14 +7,14 @@
 #include "Affichage.h"
 
 
-void MelangeAleatoire(int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3],int nbEtapes, int nbModAlea){
+void MelangeAleatoire(int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3],int nbEtapes, int nbModAlea, SDL_Window *fenetre, SDL_Renderer *interp,SDL_Rect rectangle){
 	int optodo;
 	int nbMod;
 
-	system("clear");
-	Affichage(faceB, faceO, faceG, faceR, faceY, faceW);
-	printf("Nombres de modification aleatoires voulues ?\n");
-	scanf("%d", &nbMod);
+	Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
+/*	printf("Nombres de modification aleatoires voulues ?\n");*/
+/*	scanf("%d", &nbMod);*/
+	nbMod = 4;
 
 	FILE* etapes = NULL;
 	etapes = fopen("etapes.txt", "w+");
@@ -34,46 +34,20 @@ void MelangeAleatoire(int faceB[3][3], int faceO[3][3], int faceG[3][3], int fac
 		//sauvegarde dans un fichier .txt des combinaison aleatoires effectues
 		fprintf(etapes, "rand %d = %d => %d\n", i, nombre_aleatoire, optodo);
 	
-		operation(optodo,faceB, faceO, faceG, faceR, faceY, faceW);
+		operation(&optodo,faceB, faceO, faceG, faceR, faceY, faceW);
 		nbModAlea ++;
 	}
 	fclose(etapes);
 }
 
 
-void CubeManuel (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], int nbEtapes, int nbModAlea){
-	int ChoixOperation;
+void CubeManuel (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], int nbEtapes, int nbModAlea, SDL_Window *fenetre, SDL_Renderer *interp,SDL_Rect rectangle, int *choixOperation){
 	
-	for(;;)
 	{
-		system("clear");
-		Affichage(faceB, faceO, faceG, faceR, faceY, faceW);
-		
-		printf("\n \n \nQuels modifications ?\n1=UP   11=UPi\n");
-		printf("2=R    22=Ri\n");
-		printf("3=L    33=Li\n");
-		printf("4=D    44=Di\n");
-		printf("5=B    55=Bi\n");
-		printf("6=F    66=Fi\n");
-		
-		int retscanf;
-		retscanf = scanf("%d", &ChoixOperation);
-		/* ne pas oublier de vider le buffer après la saisie */
-		scanf ("%*[^\n]");
-		getchar ();
-		
-		/* vérification de la saisie */
-		if (retscanf == 1)
-		{
-			if (ChoixOperation == 0)
-			    return;
-			    
-			operation(ChoixOperation,faceB, faceO, faceG, faceR, faceY, faceW);
-			nbEtapes++;
-		}
-		else {
-			printf("erreur de saisi\n");
-		}	
+		Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
+		operation(choixOperation,faceB, faceO, faceG, faceR, faceY, faceW);
+		nbEtapes++;
+
 	}
 }
 
@@ -124,7 +98,7 @@ void ModificationFromTxt(int faceB[3][3], int faceO[3][3], int faceG[3][3], int 
 			break;
 		}
 
-		operation(optodo,faceB, faceO, faceG, faceR, faceY, faceW);
+		operation(&optodo,faceB, faceO, faceG, faceR, faceY, faceW);
 	}
 	fclose(modin);
 	printf("nsamples : %d\n", nsamples);

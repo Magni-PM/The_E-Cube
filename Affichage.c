@@ -3,71 +3,11 @@
 #include <stdlib.h>
 #include "Affichage.h"
 
-#define LARGEUR 500
-#define HAUTEUR 400
-#define DELAY 5000
 
-void affichageSDL(int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], SDL_Window *fenetre, SDL_Renderer *interp,SDL_Rect rectangle);
-
-void affichageFaceB (int faceB[3][3],SDL_Renderer *interp,SDL_Rect rectangle);
-void affichageFaceG (int faceG[3][3],SDL_Renderer *interp,SDL_Rect rectangle);
-void affichageFaceO (int faceO[3][3],SDL_Renderer *interp,SDL_Rect rectangle);
-void affichageFaceR (int faceR[3][3],SDL_Renderer *interp,SDL_Rect rectangle);
-void affichageFaceY (int faceY[3][3],SDL_Renderer *interp,SDL_Rect rectangle);
-void affichageFaceW (int faceW[3][3],SDL_Renderer *interp,SDL_Rect rectangle);
-
-void Affichage(int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3])
-{
-	int ret = SDL_Init(SDL_INIT_VIDEO);
-	if (ret<0)
-	{
-		fprintf(stderr,"ERREUR SDL : %s",SDL_GetError());
-		exit(1);
-	}
-	
-	SDL_Window *fenetre =
-		SDL_CreateWindow("Test SDL",
-				SDL_WINDOWPOS_UNDEFINED,
-				SDL_WINDOWPOS_UNDEFINED,
-				LARGEUR, HAUTEUR,0);
-				
-	if(fenetre == NULL) 
-	{
-		fprintf(stderr,"Impossible de créer une fenêtre %s\n",
-		SDL_GetError()); exit(1);
-	}
-	
-	SDL_Renderer *interp = SDL_CreateRenderer(fenetre, -1,0);
-	
-	if(interp == NULL) 
-	{
-		fprintf(stderr,"Impossible de créer l'interpréteur graphique: %s",
-		SDL_GetError()); exit(1);
-	}
-	
-	SDL_Rect rectangle;/* C'est une structure :-) */
-	rectangle.x=10;
-	rectangle.y=140;
-	rectangle.w=38;
-	rectangle.h=38;
-	
-	
-	
-	affichageSDL(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
-}
-
-
-void affichageSDL(int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], SDL_Window *fenetre, SDL_Renderer *interp,SDL_Rect rectangle)
+void Affichage(int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], SDL_Window *fenetre, SDL_Renderer *interp,SDL_Rect rectangle)
 {
 	SDL_SetRenderDrawColor(interp,/* R */0,/* V */0,/* B */0,/* A */255);
 	SDL_RenderClear(interp);
-	
-	//SDL_SetRenderDrawColor(interp,/* R */255,/* V */255,/* B */255,/* A */255);
-	/*rectangle.x=0;
-	rectangle.y=0;
-	rectangle.w=38;
-	rectangle.h=38;
-	SDL_RenderFillRect (interp, &rectangle);*/
 	
 	affichageFaceB(faceB, interp, rectangle);
 	affichageFaceO(faceO, interp, rectangle);
@@ -75,11 +15,11 @@ void affichageSDL(int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3
 	affichageFaceY(faceY, interp, rectangle);
 	affichageFaceR(faceR, interp, rectangle);
 	affichageFaceW(faceW, interp, rectangle);
+
+		
 	
 	SDL_RenderPresent(interp);
 	SDL_Delay(DELAY);
-	SDL_DestroyWindow(fenetre);
-	SDL_Quit();
 }
 
 void affichageFaceB (int faceB[3][3],SDL_Renderer *interp,SDL_Rect rectangle)

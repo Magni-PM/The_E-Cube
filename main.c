@@ -2,11 +2,14 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <SDL2/SDL.h>
 
 #include "Affichage.h"
 #include "ModificationCube.h"
 #include "operation.h"
 #include "rotation.h"
+#include "GestionEvents.h"
+	
 
 int main(){
 	//declaration état initial Rubik's Cube
@@ -20,52 +23,82 @@ int main(){
 	int nbEtapes = 0; //compteur nombre de modification que nous avons faites sur le cube
 	int nbModAlea = 0; //nombre de modification aleatoires que nous avons faites sur le cube
 	
-	printf("The E_Cube\n");
-	printf("\nTout au long du programme, entrez 0 to quit\n");
-	//getchar();
+	int *etat = malloc(sizeof(int)); //variable de niveaux dans les menus
+	*etat = 0;
 	
-	int choixmenu;
+	int *choixOperation = malloc(sizeof(int)) ;
+
 	
+//initialisation des différentes fonctions liées a la SDL
 	
-	for(;;) //boucle infinie
+	//initialisation de la SDL et verification du bon fonctionnement
+	int ret = SDL_Init(SDL_INIT_VIDEO);
+	if (ret<0)
 	{
-		//system("clear"); //on efface la console pour gagner en lisibilite
-		Affichage(faceB, faceO, faceG, faceR, faceY, faceW); //fonction affichage du cube dans l'etat actuel
-		printf("***Menu***\n");
-		printf("   Melanger le cube = 1\n   Cube Manuel = 2\n   Modifier depuis fichier.txt = 3 \n   Quit = 0\n");
-		int retscanf;
-		retscanf = scanf("%d", &choixmenu);
-		/* ne pas oublier de vider le buffer après la saisie */
-		scanf ("%*[^\n]");
-		getchar ();
-		
-		/* vérification de la saisie */
-		if (retscanf == 1){
-			switch(choixmenu){
-			case 0 :
-				exit(0);
-				break;
-			case 1 :
-				MelangeAleatoire(faceB, faceO, faceG, faceR, faceY, faceW,nbEtapes, nbModAlea);
-				system("gedit etapes.txt");
-				break;
-			case 2 :
-				CubeManuel(faceB, faceO, faceG, faceR, faceY, faceW, nbEtapes, nbModAlea);
-				break;
-			case 3 :
-				ModificationFromTxt(faceB, faceO, faceG, faceR, faceY, faceW);
-				system("gedit modification.txt");
-				break;
-			default :
-				printf("Veuillez entrer une valeur correcte\n");
-				break;
-			}
-		}
-		else
-			printf("\n\n\n**********************erreur de saisi veuillez entrer une valeur correct*************************\n\n\n");
-			
+		fprintf(stderr,"ERREUR SDL : %s",SDL_GetError());
+		exit(1);
 	}
 	
-	
-}
+	//creation de la fenetre
+	SDL_Window *fenetre =
+		SDL_CreateWindow("Test SDL",
+				SDL_WINDOWPOS_UNDEFINED,
+				SDL_WINDOWPOS_UNDEFINED,
+				LARGEUR, HAUTEUR,0);
+				
+	if(fenetre == NULL) 
+	{
+		fprintf(stderr,"Impossible de créer une fenêtre %s\n",
+		SDL_GetError()); exit(1);
+	}
 
+	//ouverture de la fenetre
+	SDL_Renderer *interp = SDL_CreateRenderer(fenetre, -1,0);
+	if(interp == NULL) 
+	{
+		fprintf(stderr,"Impossible de créer l'interpréteur graphique: %s",
+		SDL_GetError()); exit(1);
+	}
+
+	//creation rectangle (lequel ????)
+	SDL_Rect rectangle;/* C'est une structure :-) */
+	rectangle.x=10;
+	rectangle.y=140;
+	rectangle.w=38;
+	rectangle.h=38;
+
+	//gestion des evenements
+	SDL_Event events;
+	
+
+
+	for(;;){ //boucle principale
+	*choixOperation = 0;
+	Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
+	GestionEvents(events, fenetre, etat, choixOperation);
+	printf("etat = %d\n", *etat);
+	
+		switch(*etat){
+		case ETAT_MENU :
+			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
+			break;
+			
+		case ETAT_MODALEA :
+			MelangeAleatoire(faceB, faceO, faceG, faceR, faceY, faceW,nbEtapes, nbModAlea, fenetre, interp, rectangle);
+			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
+			*etat = 0;
+			break;
+			
+		case ETAT_MODMANU:
+			operation(choixOperation,faceB, faceO, faceG, faceR, faceY, faceW);
+			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
+			break;
+			
+		default :
+			break;
+		}
+	}
+	return 0;
+}
+		
+		

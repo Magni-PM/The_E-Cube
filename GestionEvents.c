@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <SDL2/SDL.h>
+
+#include "GestionEvents.h"
+
+
+void GestionEvents(SDL_Event events, SDL_Window *fenetre, int *etat, int *choixOperation){
+	switch (*etat){
+	case ETAT_MENU:
+		while(SDL_PollEvent(&events))
+		{
+			GestionEvents_Menu(events, etat);
+			EventsCommuns (events, fenetre, etat);
+		}
+		break;
+		
+	case ETAT_MODALEA:
+		while(SDL_PollEvent(&events))
+		{
+			EventsCommuns (events, fenetre, etat);
+			GestionEvents_ModAlea(events, etat);
+		}
+		break;
+		
+	case ETAT_MODMANU:
+		while(SDL_PollEvent(&events))
+		{
+			EventsCommuns(events, fenetre, etat);
+			GestionEvents_ModManu(events, etat, choixOperation);
+		}
+	}
+}
+
+void EventsCommuns (SDL_Event events, SDL_Window *fenetre, int *etat){
+	if (events.type == SDL_QUIT)
+	{
+		SDL_DestroyWindow(fenetre);
+		SDL_Quit();
+		exit (0);
+	}
+	if (events.key.keysym.sym == SDLK_ESCAPE)
+	{
+		SDL_DestroyWindow(fenetre);
+		SDL_Quit();
+		exit (0);
+	}
+	if (events.key.keysym.sym == SDLK_SPACE)
+		*etat = 0;
+	
+}
+
+void GestionEvents_Menu (SDL_Event events, int *etat){
+	if (events.key.keysym.sym == SDLK_a){	
+		*etat = 1;
+	}
+	if (events.key.keysym.sym == SDLK_z){
+		*etat = 2;
+	}
+	
+}
+
+void GestionEvents_ModAlea (SDL_Event events, int *etat){
+}
+
+void GestionEvents_ModManu(SDL_Event events, int *etat, int *choixOperation){
+	if (events.key.keysym.sym == SDLK_z)
+		*choixOperation = 1;
+	if (events.key.keysym.sym == SDLK_e)
+		*choixOperation = 11;
+	if (events.key.keysym.sym == SDLK_r)
+		*choixOperation = 2;
+	if (events.key.keysym.sym == SDLK_f)
+		*choixOperation = 22;
+	if (events.key.keysym.sym == SDLK_q)
+		*choixOperation = 3;
+	if (events.key.keysym.sym == SDLK_a)
+		*choixOperation = 33;
+	if (events.key.keysym.sym == SDLK_d)
+		*choixOperation = 4;
+	if (events.key.keysym.sym == SDLK_s)
+		*choixOperation = 44;
+	if (events.key.keysym.sym == SDLK_AMPERSAND)
+		*choixOperation = 5;
+	if (events.key.keysym.sym == SDLK_QUOTEDBL)
+		*choixOperation = 55;
+	if (events.key.keysym.sym == SDLK_c)
+		*choixOperation = 6;
+	if (events.key.keysym.sym == SDLK_x)
+		*choixOperation = 66;	
+}

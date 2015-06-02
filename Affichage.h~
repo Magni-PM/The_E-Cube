@@ -14,4 +14,3 @@ extern void affichageFaceY (int faceY[3][3],SDL_Renderer *interp,SDL_Rect rectan
 extern void affichageFaceW (int faceW[3][3],SDL_Renderer *interp,SDL_Rect rectangle);
 extern void ecriture (SDL_Renderer *interp, char *texte, char *police, int x, int y, int w, int h, int R, int G, int B);
 extern void ecritureMenu(SDL_Renderer *interp);
-extern void ecritureModmanu(SDL_Renderer *interp);

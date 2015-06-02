@@ -10,8 +10,6 @@
 #include "operation.h"
 #include "rotation.h"
 #include "GestionEvents.h"
-#include "resolution.h"
-
 
 int main(){
 	//declaration état initial Rubik's Cube
@@ -72,36 +70,29 @@ int main(){
 
 	//gestion des evenements
 	SDL_Event events;
-	//suppresion de la prise en compte de la souris
-	SDL_EventState(SDL_MOUSEMOTION, SDL_DISABLE);
 	
 	
 	for(;;){ //boucle principale
 	*choixOperation = 0;
+	//Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
 	GestionEvents(events, fenetre, etat, choixOperation);
 	printf("etat = %d\n", *etat);
 	
 		switch(*etat){
 		case ETAT_MENU :
-			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle, etat);
+			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle,etat);
 			
 			break;
 			
 		case ETAT_MODALEA :
 			MelangeAleatoire(faceB, faceO, faceG, faceR, faceY, faceW,nbEtapes, nbModAlea, fenetre, interp, rectangle);
-			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle, etat);
+			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
 			*etat = 0;
 			break;
 			
 		case ETAT_MODMANU:
 			operation(choixOperation,faceB, faceO, faceG, faceR, faceY, faceW);
-			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle,etat);
-			break;
-		
-		case ETAT_RESOLUTION:
-		    *etat = 0;
-		    Resolution(faceB, faceO, faceG, faceR, faceY, faceW, nbEtapes, choixOperation, fenetre, interp, rectangle, etat);
-		    Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle,etat);
+			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
 			break;
 			
 		default :

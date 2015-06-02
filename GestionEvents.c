@@ -30,7 +30,15 @@ void GestionEvents(SDL_Event events, SDL_Window *fenetre, int *etat, int *choixO
 		{
 			EventsCommuns(events, fenetre, etat);
 			GestionEvents_ModManu(events, etat, choixOperation);
+		}   
+	    break;
+    
+    case ETAT_RESOLUTION:
+		while(SDL_PollEvent(&events))
+		{
+			EventsCommuns(events, fenetre, etat);
 		}
+		break;
 	}
 }
 
@@ -59,7 +67,9 @@ void GestionEvents_Menu (SDL_Event events, int *etat){
 	if (events.key.keysym.sym == SDLK_z){
 		*etat = 2;
 	}
-	
+	if (events.key.keysym.sym == SDLK_e){
+		*etat = 3;
+	}
 }
 
 void GestionEvents_ModAlea (SDL_Event events, int *etat){
@@ -91,3 +101,5 @@ void GestionEvents_ModManu(SDL_Event events, int *etat, int *choixOperation){
 	if (events.key.keysym.sym == SDLK_x)
 		*choixOperation = 66;	
 }
+
+

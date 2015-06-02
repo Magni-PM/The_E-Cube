@@ -9,6 +9,7 @@
 #include "operation.h"
 #include "rotation.h"
 #include "GestionEvents.h"
+#include "resolution.h"
 	
 
 int main(){
@@ -69,6 +70,8 @@ int main(){
 
 	//gestion des evenements
 	SDL_Event events;
+	//suppresion de la prise en compte de la souris
+	SDL_EventState(SDL_MOUSEMOTION, SDL_DISABLE);
 	
 
 
@@ -92,6 +95,12 @@ int main(){
 		case ETAT_MODMANU:
 			operation(choixOperation,faceB, faceO, faceG, faceR, faceY, faceW);
 			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
+			break;
+		
+		case ETAT_RESOLUTION:
+		    *etat = 0;
+		    Resolution(faceB, faceO, faceG, faceR, faceY, faceW, nbEtapes, choixOperation, fenetre, interp, rectangle);
+		    Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
 			break;
 			
 		default :

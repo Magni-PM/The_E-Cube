@@ -8,7 +8,7 @@ OBJ= $(SRC:.c=.o)
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
-	@$(CC) -lSDL2 -o $@ $^ $(LDFLAGS) 
+	@$(CC) -lSDL2 -lSDL2_ttf -o $@ $^ $(LDFLAGS) 
 
 %.o: %.c
 	@$(CC) -I/usr/include/SDL2 -o $@ -c $< $(CFLAGS) 

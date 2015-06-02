@@ -6,7 +6,7 @@
 #include <SDL/SDL_ttf.h>
 
 #include "GestionEvents.h"
-//#include "Comande.h"
+#include "Comande.h"
 
 
 void GestionEvents(SDL_Event events, SDL_Window *fenetre, int *etat, int *choixOperation){
@@ -58,7 +58,7 @@ void GestionEvents_Menu (SDL_Event events, int *etat){
 	if (events.key.keysym.sym == SDLK_a){	
 		*etat = 1;
 	}
-	if (events.key.keysym.sym == SDLK_z){
+	if (events.key.keysym.sym == Modification_manuelle){
 		*etat = 2;
 	}
 	

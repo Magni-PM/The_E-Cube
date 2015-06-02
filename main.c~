@@ -86,13 +86,13 @@ int main(){
 			
 		case ETAT_MODALEA :
 			MelangeAleatoire(faceB, faceO, faceG, faceR, faceY, faceW,nbEtapes, nbModAlea, fenetre, interp, rectangle);
-			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle,etat);
+			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
 			*etat = 0;
 			break;
 			
 		case ETAT_MODMANU:
 			operation(choixOperation,faceB, faceO, faceG, faceR, faceY, faceW);
-			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle,etat);
+			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle);
 			break;
 			
 		default :

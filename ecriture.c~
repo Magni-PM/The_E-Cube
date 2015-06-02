@@ -1,0 +1,22 @@
+#include <SDL2/SDL.h>
+#include <SDL/SDL_ttf.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "ecriture.h"
+
+void ecriture(SDL_Renderer *interp, char *texte, char *police, int x, int y, int w, int h, int R, int G, int B)
+{
+	TTF_Font* Police = TTF_OpenFont(police, 100); 	
+	SDL_Color couleur = {R,G,B};
+	SDL_Surface* surfaceMessage = TTF_RenderText_Blended(Police, texte, couleur); 
+	SDL_Texture* Message = SDL_CreateTextureFromSurface(interp, surfaceMessage); 
+	
+	SDL_Rect Message_rect; 
+	Message_rect.x = x;  
+	Message_rect.y = y; 
+	Message_rect.w = w;
+	Message_rect.h = h;
+
+	SDL_RenderCopy(interp, Message, NULL, &Message_rect); 
+	TTF_CloseFont(Police); 
+}

@@ -78,13 +78,12 @@ int main(){
 	
 	for(;;){ //boucle principale
 	*choixOperation = 0;
+	Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle, etat);
 	GestionEvents(events, fenetre, etat, choixOperation);
-	printf("etat = %d\n", *etat);
 	
 		switch(*etat){
 		case ETAT_MENU :
 			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle, etat);
-			
 			break;
 			
 		case ETAT_MODALEA :

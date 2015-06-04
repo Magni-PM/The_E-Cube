@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <SDL/SDL_ttf.h>
 #include "Affichage.h"
-#include "Comande.h"
+#include "Commande.h"
 
 
 void Affichage(int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], SDL_Window *fenetre, SDL_Renderer *interp,SDL_Rect rectangle,int *etat)

@@ -11,6 +11,7 @@
 #include "rotation.h"
 #include "GestionEvents.h"
 #include "resolution.h"
+#include "init.h"
 
 
 int main(){
@@ -34,13 +35,7 @@ int main(){
 	
 //initialisation des différentes fonctions liées a la SDL
 	
-	//initialisation de la SDL et verification du bon fonctionnement
-	int ret = SDL_Init(SDL_INIT_VIDEO);
-	if (ret<0)
-	{
-		fprintf(stderr,"ERREUR SDL : %s",SDL_GetError());
-		exit(1);
-	}
+	Init_SDL_TTF();
 	
 	//creation de la fenetre
 	SDL_Window *fenetre =
@@ -63,18 +58,20 @@ int main(){
 		SDL_GetError()); exit(1);
 	}
 
-	//creation rectangle (lequel ????)
+	//creation rectangle 
 	SDL_Rect rectangle;/* C'est une structure :-) */
 	rectangle.x=10;
 	rectangle.y=140;
 	rectangle.w=38;
 	rectangle.h=38;
+	
+	
 
 	//gestion des evenements
 	SDL_Event events;
 	//suppresion de la prise en compte de la souris
 	SDL_EventState(SDL_MOUSEMOTION, SDL_DISABLE);
-	
+	int SDL_WaitEvent(SDL_Event* events);
 	
 	for(;;){ //boucle principale
 	*choixOperation = 0;
@@ -84,6 +81,7 @@ int main(){
 		switch(*etat){
 		case ETAT_MENU :
 			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle, etat);
+			SDL_WaitEvent(&events);
 			break;
 			
 		case ETAT_MODALEA :
@@ -95,6 +93,7 @@ int main(){
 		case ETAT_MODMANU:
 			operation(choixOperation,faceB, faceO, faceG, faceR, faceY, faceW);
 			Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle,etat);
+			SDL_WaitEvent(&events);
 			break;
 		
 		case ETAT_RESOLUTION:
@@ -108,6 +107,7 @@ int main(){
 		}
 	}
 	return 0;
+	
 }
 		
 		

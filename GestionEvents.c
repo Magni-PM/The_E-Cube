@@ -6,7 +6,7 @@
 #include <SDL/SDL_ttf.h>
 
 #include "GestionEvents.h"
-//#include "Comande.h"
+
 
 
 void GestionEvents(SDL_Event events, SDL_Window *fenetre, int *etat, int *choixOperation){

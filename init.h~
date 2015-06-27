@@ -1,0 +1,2 @@
+extern void Init_SDL&TTF();
+extern void Quit_SDL&TTF();

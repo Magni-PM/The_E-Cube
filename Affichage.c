@@ -422,13 +422,6 @@ void ecritureMenu(SDL_Renderer *interp)
 	char *texte = NULL;
 	char *police = NULL;
 	
-	//initialisation de la TTF
-	if(TTF_Init() == -1)
-	{
-	fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
-	exit(EXIT_FAILURE);
-	}
-	
 	//texte "intro"
 	x=20;y=420;w=341;h=15;R=255;G=255;B=255;
 	texte="Bonjour que voulez-vous faire ?";police="bla.ttf";
@@ -453,10 +446,6 @@ void ecritureMenu(SDL_Renderer *interp)
 	x=20;y=620;w=143;h=15;R=255;G=255;B=255;
 	texte="Quit -> ECHAP";police="bla.ttf";
 	ecriture(interp,texte,police,x,y,w,h,R,G,B);	
-	
-
-	SDL_RenderPresent(interp);
-	TTF_Quit();
 }
 
 void ecritureModmanu(SDL_Renderer *interp)
@@ -465,13 +454,6 @@ void ecritureModmanu(SDL_Renderer *interp)
 	int x=0,y=0,w=0,h=0,R=0,G=0,B=0;
 	char *texte = NULL;
 	char *police = NULL;
-	
-	//initialisation de la TTF
-	if(TTF_Init() == -1)
-	{
-	fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
-	exit(EXIT_FAILURE);
-	}
 	
 	//texte "intro"
 	x=20;y=420;w=396;h=15;R=255;G=255;B=255;
@@ -535,9 +517,5 @@ void ecritureModmanu(SDL_Renderer *interp)
 	x=270;y=620;w=121;h=15;R=255;G=255;B=255;
 	texte="Return -> "RETURN;police="bla.ttf";
 	ecriture(interp,texte,police,x,y,w,h,R,G,B);
-
-
-	SDL_RenderPresent(interp);
-	TTF_Quit();
 }
 

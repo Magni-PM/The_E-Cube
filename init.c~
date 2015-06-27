@@ -1,0 +1,28 @@
+#include <SDL2/SDL.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <SDL/SDL_ttf.h>
+
+void Init_SDL_TTF(void)
+{
+	//initialisation de la SDL et verification du bon fonctionnement
+	int ret = SDL_Init(SDL_INIT_VIDEO);
+	if (ret<0)
+	{
+		fprintf(stderr,"ERREUR SDL : %s",SDL_GetError());
+		exit(1);
+	}
+
+	//initialisation de la TTF
+	/*if(TTF_Init() == -1)
+	{
+	fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
+	exit(EXIT_FAILURE);
+	}*/
+}
+
+void Quit_SDL_TTF(void)
+{
+SDL_Quit();
+TTF_Quit();
+}

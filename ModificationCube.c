@@ -13,7 +13,7 @@ void MelangeAleatoire(int faceB[3][3], int faceO[3][3], int faceG[3][3], int fac
 
 /*	printf("Nombres de modification aleatoires voulues ?\n");*/
 /*	scanf("%d", &nbMod);*/
-	nbMod = 4;
+	nbMod = 50;
 
 	FILE* etapes = NULL;
 	etapes = fopen("etapes.txt", "w+");

@@ -12,7 +12,7 @@
 
 void Resolution (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], int nbEtapes, int *choixOperation, SDL_Window *fenetre, SDL_Renderer *interp,SDL_Rect rectangle, int *etat){
     
-    int tabop[5]; //tableau pour stocker les differentes operation a effectuer
+    int tabop[15]; //tableau pour stocker les differentes operation a effectuer
     
             
     int *nbop = malloc(sizeof(int));
@@ -20,11 +20,12 @@ void Resolution (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3]
     
     //on realise la croix bleue
     CroixBleu (faceB, faceO, faceG, faceR, faceY, faceW, nbEtapes, choixOperation, tabop, nbop, fenetre, interp, rectangle, etat );
+    CoinsBleus (faceB, faceO, faceG, faceR, faceY, faceW, nbEtapes, choixOperation, tabop, nbop, fenetre, interp, rectangle, etat );
     
     
 }
 
-void RealisationOperation (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], int nbEtapes, int *choixOperation, int tabop[5], int  *nbop, SDL_Window *fenetre, SDL_Renderer *interp, SDL_Rect rectangle, int *etat){
+void RealisationOperation (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], int nbEtapes, int *choixOperation, int tabop[15], int  *nbop, SDL_Window *fenetre, SDL_Renderer *interp, SDL_Rect rectangle, int *etat){
     
     int i;
     
@@ -33,6 +34,7 @@ void RealisationOperation (int faceB[3][3], int faceO[3][3], int faceG[3][3], in
         *choixOperation = tabop[i];
         operation(choixOperation,faceB, faceO, faceG, faceR, faceY, faceW);
         
+        
         //on affiche pas a pas la resolution
         Affichage(faceB, faceO, faceG, faceR, faceY, faceW, fenetre, interp, rectangle, etat);
         SDL_Delay (50);
@@ -40,7 +42,7 @@ void RealisationOperation (int faceB[3][3], int faceO[3][3], int faceG[3][3], in
 } 
         
 
-void CroixBleu (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], int nbEtapes, int *choixOperation, int tabop[5], int  *nbop, SDL_Window *fenetre, SDL_Renderer *interp,SDL_Rect rectangle, int *etat){
+void CroixBleu (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], int nbEtapes, int *choixOperation, int tabop[15], int  *nbop, SDL_Window *fenetre, SDL_Renderer *interp,SDL_Rect rectangle, int *etat){
     
     /**************************************************************************
     *********************************milieu 12*********************************
@@ -544,9 +546,9 @@ void CroixBleu (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][
     }
    
     else if(faceO[1][0] == 18){
-        tabop[0] = 44;
-        tabop[1] = 3;
-        tabop[2] = 4;
+        tabop[0] = 33;
+        tabop[1] = 4;
+        tabop[2] = 3;
         *nbop = 3;
     }
     //faceO[1][2] => impossible
@@ -655,7 +657,7 @@ void CroixBleu (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][
     else if(faceW[1][2] == 18){
         tabop[0] = 66;
         tabop[1] = 2;
-        tabop[2] = 1;
+        tabop[2] = 6;
         *nbop = 3;
     }
     
@@ -669,6 +671,103 @@ void CroixBleu (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][
     
     if (tabop[0] != 0)
         RealisationOperation(faceB, faceO, faceG, faceR, faceY, faceW, nbEtapes, choixOperation, tabop, nbop, fenetre, interp, rectangle, etat);
-        
 
+}
+
+
+
+void CoinsBleus (int faceB[3][3], int faceO[3][3], int faceG[3][3], int faceR[3][3], int faceY[3][3], int faceW[3][3], int nbEtapes, int *choixOperation, int tabop[15], int  *nbop, SDL_Window *fenetre, SDL_Renderer *interp,SDL_Rect rectangle, int *etat){
+    
+    /**************************************************************************
+    **********************************coins 11*********************************
+    **************************************************************************/
+    //cas de la faceB    
+    if(faceB[0][0] == 11){
+        tabop[0] = 0;
+        *nbop = 1;
+    }        
+    
+    else if(faceB[0][2] == 11){
+        tabop[0] = 2;
+        tabop[1] = 5;
+        tabop[2] = 22;
+        tabop[3] = 11;
+        tabop[4] = 3;
+        tabop[15] = 1;
+        tabop[6] = 33;
+        *nbop = 7;
+    }
+    
+    else if(faceB[2][0] == 11){
+        tabop[0] = 44;
+        tabop[1] = 55;
+        tabop[2] = 4;
+        tabop[3] = 3;
+        tabop[4] = 11;
+        tabop[15] = 33;
+        tabop[6] = 1;
+        *nbop = 7;
+    }
+    
+    else if(faceB[2][2] == 11){
+        tabop[0] = 4;
+        tabop[1] = 2;
+        tabop[2] = 2;
+        tabop[3] = 44;
+        tabop[4] = 11;
+        tabop[15] = 3;
+        tabop[6] = 1;
+        tabop[7] = 33;
+        *nbop = 8;
+    }
+    
+    //cas de la faceO
+    else if(faceO[0][0] == 11){
+        tabop[0] = 11;
+        tabop[1] = 3;
+        tabop[2] = 1;
+        tabop[3] = 33;
+        *nbop = 4;        
+    }
+    
+    else if(faceO[0][2] == 11){
+        tabop[0] = 33;
+        tabop[1] = 55;
+        tabop[2] = 3;
+        tabop[3] = 5;
+        tabop[4] = 11;
+        tabop[15] = 3;
+        tabop[6] = 1;
+        tabop[7] = 33;
+        *nbop = 8;
+    }
+    
+    else if(faceO[2][0] == 11){
+        tabop[0] = 55;
+        tabop[1] = 3;
+        tabop[2] = 11;
+        tabop[3] = 33;
+        tabop[4] = 1;
+        *nbop = 5;
+    }
+    
+    else if(faceO[2][2] == 11){
+        tabop[0] = 3;
+        tabop[1] = 5;
+        tabop[2] = 33;
+        tabop[3] = 5;
+        tabop[4] = 5;
+        tabop[15] = 3;
+        tabop[6] = 11;
+        tabop[7] = 33;
+        tabop[8] = 1;
+        *nbop = 9;
+    }     
+    else
+        return;
+    
+    if (tabop[0] != 0)
+        RealisationOperation(faceB, faceO, faceG, faceR, faceY, faceW, nbEtapes, choixOperation, tabop, nbop, fenetre, interp, rectangle, etat);
+    
+    
 }
